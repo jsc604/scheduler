@@ -35,7 +35,7 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />)
   .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
+    <DayListItem name="Tuesday" setDay={action("setDay")(days.name)} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
   ));
 
 const days = [
@@ -96,13 +96,12 @@ storiesOf("InterviewerListItem", module)
     />
   ))
   .add("Clickable", () => (
-    <InterviewerListItem
-      id={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      setInterviewer={action("setInterviewer")}
-    />
-  ));
+  <InterviewerListItem
+    name={interviewer.name}
+    avatar={interviewer.avatar}
+    setInterviewer={() => action("setInterviewer")(interviewer.id)}
+  />
+));
 
 const interviewers = [
   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
