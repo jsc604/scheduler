@@ -24,3 +24,26 @@ export function getInterview(state, interview) {
     };
   }
 }
+
+export function getInterviewersForDay(state, day) {
+  const correctDay = state.days.find(days => days.name === day);
+  if (!correctDay) {
+    return [];
+  }
+  if (!correctDay.appointments) {
+    return [];
+  }
+  const appointmentsForDay = correctDay.appointments.map(id => state.appointments[id]);
+  const interviewers = appointmentsForDay.map(app => {
+    if (app === undefined) {
+      return [];
+    }
+    if (app.interview === null) {
+      return [];
+    } else {
+      return state.interviewers[app.interview.interviewer]
+    }
+  })
+
+  return [...new Set(interviewers)];
+};
