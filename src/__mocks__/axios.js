@@ -82,10 +82,18 @@ export default {
   }),
 
   put: jest.fn(url => {
+    console.log('put mock called with url: ',url);
       return Promise.resolve({
         status: 204,
         statusText: "No Content",
         data: fixtures.interviewers
       })
+  }),
+
+  delete: jest.fn(() => {
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content"
+    })
   })
 }
