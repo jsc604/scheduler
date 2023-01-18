@@ -11,7 +11,6 @@ const {state, setDay, bookInterview, cancelInterview} = useApplicationData();
   
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
-
   return (
     <main className="layout">
       <section className="sidebar">

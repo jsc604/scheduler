@@ -30,20 +30,8 @@ export function getInterviewersForDay(state, day) {
   if (!correctDay) {
     return [];
   }
-  if (!correctDay.appointments) {
+  if (!correctDay.interviewers) {
     return [];
   }
-  const appointmentsForDay = correctDay.appointments.map(id => state.appointments[id]);
-  const interviewers = appointmentsForDay.map(app => {
-    if (app === undefined) {
-      return [];
-    }
-    if (app.interview === null) {
-      return [];
-    } else {
-      return state.interviewers[app.interview.interviewer]
-    }
-  })
-
-  return [...new Set(interviewers)];
+  return correctDay.interviewers.map(id => state.interviewers[id]);
 };

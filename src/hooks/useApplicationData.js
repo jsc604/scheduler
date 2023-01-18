@@ -22,30 +22,29 @@
 //     });
 //   }, []);
 
-//   function bookInterview(id, interview) {
+//  function updateSpots(appointments, days) {
+//   return days.map(day => {
+//     const unbookedSpots = day.appointments.filter(appointmentId => !appointments[appointmentId].interview).length;
+//     return { ...day, spots: unbookedSpots }
+//   });
+// }
+
+//   async function bookInterview(id, interview) {
 //     const appointment = { ...state.appointments[id], interview: { ...interview } };
 //     const appointments = { ...state.appointments, [id]: appointment };
+//     const updatedDays = updateSpots(appointments, state.days);
 
-//     const day = state.days.find(day => day.appointments.includes(id));
-//     const dayIndex = state.days.indexOf(day);
-//     const days = [...state.days];
-//     days[dayIndex].spots--;
-
-//     return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
-//       .then(() => setState({ ...state, appointments }));
+//     await axios.put(`http://localhost:8001/api/appointments/${id}`, appointment);
+//     return setState({ ...state, appointments, days: updatedDays });
 //   };
 
-//   function cancelInterview(id) {
+//   async function cancelInterview(id) {
 //     const appointment = { ...state.appointments[id], interview: null };
 //     const appointments = { ...state.appointments, [id]: appointment };
+//     const updatedDays = updateSpots(appointments, state.days);
 
-//     const day = state.days.find(day => day.appointments.includes(id));
-//     const dayIndex = state.days.indexOf(day);
-//     const days = [...state.days];
-//     days[dayIndex].spots++;
-
-//     return axios.delete(`http://localhost:8001/api/appointments/${id}`, appointment)
-//       .then(() => setState({ ...state, appointments }));
+//     await axios.delete(`http://localhost:8001/api/appointments/${id}`, appointment);
+//     return setState({ ...state, appointments, days: updatedDays });
 //   };
 
 //   return { state, setDay, bookInterview, cancelInterview };
@@ -59,6 +58,13 @@ const SET_APPLICATION_DATA = 'SET_APPLICATION_DATA';
 const BOOK_INTERVIEW = 'BOOK_INTERVIEW';
 const CANCEL_INTERVIEW = 'CANCEL_INTERVIEW';
 
+function updateSpots(appointments, days) {
+  return days.map(day => {
+    const unbookedSpots = day.appointments.filter(appointmentId => !appointments[appointmentId].interview).length;
+    return { ...day, spots: unbookedSpots }
+  });
+}
+
 const reducer = (state, action) => {
   switch (action.type) {
     case SET_DAY:
@@ -66,20 +72,13 @@ const reducer = (state, action) => {
     case SET_APPLICATION_DATA:
       return { ...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers }
     case BOOK_INTERVIEW:
-      const appointment = { ...state.appointments[action.id], interview: action.interview };
-      const appointments = { ...state.appointments, [action.id]: appointment };
-      const day = state.days.find(day => day.appointments.includes(action.id));
-      const dayIndex = state.days.indexOf(day);
-      const days = [...state.days];
-      days[dayIndex].spots--;
+      const appointments = { ...state.appointments, [action.id]: { ...state.appointments[action.id], interview: action.interview } };
+      const days = updateSpots(appointments, state.days);
       return { ...state, appointments, days }
     case CANCEL_INTERVIEW:
       const cancelledAppointment = { ...state.appointments[action.id], interview: null };
       const updatedAppointments = { ...state.appointments, [action.id]: cancelledAppointment };
-      const foundDay = state.days.find(day => day.appointments.includes(action.id));
-      const foundDayIndex = state.days.indexOf(foundDay);
-      const updatedDays = [...state.days];
-      updatedDays[foundDayIndex].spots++;
+      const updatedDays = updateSpots(updatedAppointments, state.days);
       return { ...state, appointments: updatedAppointments, days: updatedDays }
     default:
       throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
@@ -106,14 +105,14 @@ export default function useApplicationData() {
     });
   }, []);
 
-  function bookInterview(id, interview) {
-    return axios.put(`http://localhost:8001/api/appointments/${id}`, { interview })
-      .then(() => dispatch({ type: BOOK_INTERVIEW, id, interview }));
+  async function bookInterview(id, interview) {
+    await axios.put(`http://localhost:8001/api/appointments/${id}`, { interview });
+    return dispatch({ type: BOOK_INTERVIEW, id, interview });
   }
 
-  function cancelInterview(id) {
-    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
-      .then(() => dispatch({ type: CANCEL_INTERVIEW, id }));
+  async function cancelInterview(id) {
+    await axios.delete(`http://localhost:8001/api/appointments/${id}`);
+    return dispatch({ type: CANCEL_INTERVIEW, id });
   }
 
   return { state, setDay, bookInterview, cancelInterview };
