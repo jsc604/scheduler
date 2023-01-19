@@ -9,7 +9,7 @@ Some of the key features include:
 * Custom hooks for efficient and flexible state management
 * Axios for seamless API calls
 * Storybook for easy component development and visualization
-* UseState and useReducer for managing the app's state in a performant way
+* useState, useEffect, and useReducer for managing the app's state in a performant way
 
 The scheduler allows users to create and manage appointments, making it perfect for businesses or individuals looking to streamline their scheduling process. The user interface is intuitive and easy to use, making it accessible to people of all skill levels.
 
@@ -17,7 +17,7 @@ I have used Cypress for end-to-end testing and Jest for unit testing to ensure t
 
 By using React, the scheduler app is able to run smoothly and efficiently. React's virtual DOM allows for updates to be made quickly and without the need for a full page refresh. This means that when changes are made to the schedule, the spots on the day list will automatically update without any lag or interruption to the user experience.
 
-The use of React also allows for easy and efficient management of the app's state. By using state management hooks such as useState and useReducer, the app can keep track of the schedule and make updates to it in real-time. This ensures that the schedule is always up to date and accurate, and that the spots on the day list will always reflect the current schedule.
+The use of React also allows for easy and efficient management of the app's state. By using state management hooks such as useState, useEffect, and useReducer, the app can keep track of the schedule and make updates to it in real-time. This ensures that the schedule is always up to date and accurate, and that the spots on the day list will always reflect the current schedule.
 
 Here's a demo of the scheduler in action:
 
