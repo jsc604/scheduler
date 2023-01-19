@@ -15,9 +15,13 @@ The scheduler allows users to create and manage appointments, making it perfect 
 
 I have used Cypress for end-to-end testing and Jest for unit testing to ensure that the app is functioning correctly and efficiently. I also utilized Storybook to develop and document the UI components in isolation.
 
+Additionally, I have created custom hooks to manage the state of the scheduler and make it more reusable.
+
 Here's a demo of the scheduler in action:
 
 ![GIF Working mode](https://github.com/jsc604/scheduler/blob/master/docs/development%20mode.gif?raw=true)
+
+Here is a demo of the scheduler when running into an error:
 
 ![GIF Error mode](https://github.com/jsc604/scheduler/blob/master/docs/Error%20Mode.gif?raw=true)
 
@@ -29,7 +33,6 @@ Here are some screenshots of the scheduler:
 
 !["Deleting an appointment"](https://github.com/jsc604/scheduler/blob/master/docs/ss3.png?raw=true)
 
-Additionally, I have created custom hooks to manage the state of the scheduler and make it more reusable.
 
 If you're looking for a scheduler for your business or personal use, this project would be perfect for you. Feel free to take a look at the code and let me know if you have any questions or suggestions.
 
