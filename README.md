@@ -1,23 +1,35 @@
 # Interview Scheduler
 
-## Setup
+Welcome to my scheduler project!
 
-Install dependencies with `npm install`.
+This project was built using React
 
-## Running Webpack Development Server
+Some of the key features include:
+* React Testing Library, Jest, and Cypress for thorough testing and ensuring high-quality code
+* Custom hooks for efficient and flexible state management
+* Axios for seamless API calls
+* Storybook for easy component development and visualization
+* UseState and useReducer for managing the app's state in a performant way
 
-```sh
-npm start
-```
+The scheduler allows users to create and manage appointments, making it perfect for businesses or individuals looking to streamline their scheduling process. The user interface is intuitive and easy to use, making it accessible to people of all skill levels.
 
-## Running Jest Test Framework
+I have used Cypress for end-to-end testing and Jest for unit testing to ensure that the app is functioning correctly and efficiently. I also utilized Storybook to develop and document the UI components in isolation.
 
-```sh
-npm test
-```
+Here's a demo of the scheduler in action:
 
-## Running Storybook Visual Testbed
+![GIF Working mode](https://github.com/jsc604/scheduler/blob/master/docs/development%20mode.gif?raw=true)
 
-```sh
-npm run storybook
-```
+![GIF Error mode](https://github.com/jsc604/scheduler/blob/master/docs/Error%20Mode.gif?raw=true)
+
+Here are some screenshots of the scheduler:
+
+!["Regular Schedule"](https://github.com/jsc604/scheduler/blob/master/docs/ss1.png?raw=true)
+
+!["Booking an appointment"](https://github.com/jsc604/scheduler/blob/master/docs/ss2.png?raw=true)
+
+!["Deleting an appointment"](https://github.com/jsc604/scheduler/blob/master/docs/ss3.png?raw=true)
+
+Additionally, I have created custom hooks to manage the state of the scheduler and make it more reusable.
+
+If you're looking for a scheduler for your business or personal use, this project would be perfect for you. Feel free to take a look at the code and let me know if you have any questions or suggestions.
+
