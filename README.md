@@ -15,7 +15,9 @@ The scheduler allows users to create and manage appointments, making it perfect 
 
 I have used Cypress for end-to-end testing and Jest for unit testing to ensure that the app is functioning correctly and efficiently. I also utilized Storybook to develop and document the UI components in isolation.
 
-Additionally, I have created custom hooks to manage the state of the scheduler and make it more reusable.
+By using React, the scheduler app is able to run smoothly and efficiently. React's virtual DOM allows for updates to be made quickly and without the need for a full page refresh. This means that when changes are made to the schedule, the spots on the day list will automatically update without any lag or interruption to the user experience.
+
+The use of React also allows for easy and efficient management of the app's state. By using state management hooks such as useState and useReducer, the app can keep track of the schedule and make updates to it in real-time. This ensures that the schedule is always up to date and accurate, and that the spots on the day list will always reflect the current schedule.
 
 Here's a demo of the scheduler in action:
 
