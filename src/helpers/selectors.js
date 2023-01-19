@@ -2,10 +2,10 @@ export function getAppointmentsForDay(state, day) {
   const correctDay = state.days.find(days => days.name === day);
   if (!correctDay) {
     return [];
-  }
+  };
   if (!correctDay.appointments) {
     return [];
-  }
+  };
   return correctDay.appointments.map(id => state.appointments[id]);
 };
 
@@ -22,16 +22,16 @@ export function getInterview(state, interview) {
         avatar: interviewer.avatar
       }
     };
-  }
-}
+  };
+};
 
 export function getInterviewersForDay(state, day) {
   const correctDay = state.days.find(days => days.name === day);
   if (!correctDay) {
     return [];
-  }
+  };
   if (!correctDay.interviewers) {
     return [];
-  }
+  };
   return correctDay.interviewers.map(id => state.interviewers[id]);
 };

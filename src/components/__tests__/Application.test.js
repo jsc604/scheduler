@@ -10,6 +10,7 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("Application", () => {
+  // TEST 1
   it("defaults to Monday and changes the schedule when a new day is selected", async () => {
     const { container } = render(<Application />);
 
@@ -19,6 +20,7 @@ describe("Application", () => {
     });
   });
 
+  // TEST 2
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     const { container } = render(<Application />);
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -45,6 +47,7 @@ describe("Application", () => {
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 
+  // TEST 3
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     const { container } = render(<Application />);
 
@@ -70,6 +73,7 @@ describe("Application", () => {
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
+  // TEST 4
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
     const { container} = render(<Application />);
 
@@ -98,6 +102,7 @@ describe("Application", () => {
     expect(getByText(mondayList, '1 spot remaining')).toBeInTheDocument();
   });
 
+  // TEST 5
   it("shows the save error when failing to save an appointment", async () => {
     axios.put.mockRejectedValueOnce();
     const { container } = render(<Application />);
@@ -118,7 +123,8 @@ describe("Application", () => {
     await waitForElement(() => getByText(appointment, 'Error saving appointment!'));
     expect(getByText(appointment, 'Error saving appointment!')).toBeInTheDocument();
   });
-
+  
+  // TEST 6
   it("shows the delete error when failing to delete an appointment", async () => {
     axios.delete.mockRejectedValueOnce();
     const { container } = render(<Application />);

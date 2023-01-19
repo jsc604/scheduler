@@ -30,28 +30,28 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
-  }
+  };
 
   function deleteAppointment() {
     transition(DELETE, true);
     props.cancelInterview(props.id)
       .then(() => transition(EMPTY))
       .catch(() => transition(ERROR_DELETE, true));
-  }
-  
+  };
+
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === CONFIRM && <Confirm
-       message={'Are you sure you want to delete this appointment?'}
-       onConfirm={deleteAppointment}
-       onCancel={back}
-       />}
       {mode === SAVING && <Status message={'Saving...'} />}
       {mode === DELETE && <Status message={'Deleting...'} />}
-      {mode === ERROR_SAVE && <Error message={'Error saving appointment!'} onClose={back}/>}
-      {mode === ERROR_DELETE && <Error message={'Error deleting appointment!'} onClose={back}/>}
+      {mode === ERROR_SAVE && <Error message={'Error saving appointment!'} onClose={back} />}
+      {mode === ERROR_DELETE && <Error message={'Error deleting appointment!'} onClose={back} />}
+      {mode === CONFIRM && <Confirm
+        message={'Are you sure you want to delete this appointment?'}
+        onConfirm={deleteAppointment}
+        onCancel={back}
+      />}
       {mode === CREATE && (
         <Form
           interviewers={props.interviewers}
